@@ -3,14 +3,19 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\Users\UserTypeEnum;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids;
 
     /**
      * The attributes that are mass assignable.
@@ -42,4 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->email === 'admin@jda.mygma.xyz';
+    }
 }
