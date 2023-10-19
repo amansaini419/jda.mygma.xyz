@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\DateTimeCast;
 use App\Casts\ImageCast;
 use App\Casts\NameCast;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -18,6 +19,9 @@ class Nominee extends Model
 
     protected $casts = [
 		'name' => NameCast::class,
+        'created_at' => DateTimeCast::class,
+        'updated_at' => DateTimeCast::class,
+        'deleted_at' => DateTimeCast::class,
 		//'image' => ImageCast::class,
 	];
 

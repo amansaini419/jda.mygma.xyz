@@ -1,8 +1,8 @@
 <aside class="left-sidebar">
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="{{ route('home') }}" class="text-nowrap logo-img text-black fs-6 fw-bold">
-                E-VOTE SYSTEM
+            <a href="{{ route('home') }}" class="text-nowrap logo-img text-black mx-auto mt-2">
+                <img src="{{ Storage::url(env('COMPANY_LOGO')) }}" width="80" alt="logo">
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8"></i>
