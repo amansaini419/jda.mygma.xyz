@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
+})->name('home'); */
+
+Route::get('/blank', function () {
+    return view('pages.blank');
+})->name('blank');
+
+Route::get('/', function () {
+    return view('pages.home');
 })->name('home');
+
+Route::get('/category/{slug}', [Controllers\CategoryController::class, 'view'])->name('category');
