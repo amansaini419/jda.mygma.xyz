@@ -4,15 +4,22 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>E-vote System</title>
+        <title>{{ env('COMPANY_NAME') }}</title>
         <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
         <style>
+            .sidebar-nav ul .sidebar-item .sidebar-link:hover, .sidebar-nav ul .sidebar-item.selected > .sidebar-link, .sidebar-nav ul .sidebar-item.selected > .sidebar-link.active, .sidebar-nav ul .sidebar-item > .sidebar-link.active{
+                border-radius: var(--bs-border-radius-pill) !important;
+            }
             .nominee-img{
                 transition: all .3s ease-in-out 0s;
                 cursor: pointer;
             }
             .nominee-img:hover{
                 transform: scale(0.9);
+            }
+            .text-error{
+                color: rgb(220, 53, 69);
             }
         </style>
         @stack('style')
@@ -81,6 +88,38 @@
         <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
         <script src="{{ asset('assets/js/app.min.js') }}"></script>
         <script src="{{ asset('assets/libs/simplebar/dist/simplebar.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script>
+			window.addEventListener('alert', event => {
+                //console.log('event', event.detail[0]);
+				const type = event.detail[0].type;
+				const message = event.detail[0].message;
+				const title = event.detail[0].title ?? '';
+				const options = {
+					'closeButton': true,
+					'progressBar': true,
+					'showDuration': '300',
+					'hideDuration': '5000',
+					'timeOut': '5000',
+				};
+				switch(type){
+					case 'success':
+						toastr.success(message, title ?? '', options);
+						break;
+					case 'warning':
+						toastr.warning(message, title ?? '', options);
+						break;
+					case 'error':
+						toastr.error(message, title ?? '', options);
+						break;
+					case 'info':
+						toastr.info(message, title ?? '', options);
+						break;
+					default:
+						toastr.info(message, title ?? '', options);
+				};
+			});
+		</script>
         @stack('script')
     </body>
 

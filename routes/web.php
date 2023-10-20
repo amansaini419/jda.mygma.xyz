@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,4 +27,6 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
+Route::get('/login', [Controllers\AuthController::class, 'login'])->name('login');
+Route::get('/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
 Route::get('/category/{slug}', [Controllers\CategoryController::class, 'view'])->name('category');

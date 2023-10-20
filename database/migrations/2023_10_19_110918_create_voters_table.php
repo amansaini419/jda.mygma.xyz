@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('mdc_number')->unique();
             $table->string('login_code')->nullable();
             $table->dateTime('login_code_date')->nullable();
-            $table->string('2fa_code')->nullable();
-            $table->dateTime('2fa_code_date')->nullable();
+            $table->string('confirm_code')->nullable();
+            $table->dateTime('confirm_code_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->primary('id');

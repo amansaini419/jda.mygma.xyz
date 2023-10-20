@@ -36,6 +36,29 @@
                     </a>
                 </li>
                 @endforeach
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">auth</span>
+                </li>
+                @if(isUserLogin())
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('logout') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-layout-logout"></i>
+                        </span>
+                        <span class="hide-menu">Log Out</span>
+                    </a>
+                </li>
+                @else
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('login') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-layout-login"></i>
+                        </span>
+                        <span class="hide-menu">Log In</span>
+                    </a>
+                </li>
+                @endif
             </ul>
         </nav>
     </div>

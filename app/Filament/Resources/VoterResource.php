@@ -5,8 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\VoterResource\Pages;
 use App\Filament\Resources\VoterResource\RelationManagers;
 use App\Models\Voter;
+use App\Services\VoterService;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -99,6 +101,22 @@ class VoterResource extends Resource
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\Action::make('resend')
+                        ->label('Resend Login Code')
+                        ->icon('heroicon-o-paper-airplane')
+                        ->color('primary')
+                        ->action(
+                            function (Voter $record): void {
+                                $voterService = new VoterService;
+                                $voterService->sendLoginCode($record);
+                            }
+                        )
+                        ->successNotification(
+                            Notification::make()
+                                ->success()
+                                ->title('Login Code')
+                                ->body('The login code has been send to voter successfully.')
+                        ),
                     Tables\Actions\ForceDeleteAction::make(),
                     Tables\Actions\RestoreAction::make(),
                 ]),

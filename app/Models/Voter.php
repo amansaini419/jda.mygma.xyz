@@ -15,6 +15,11 @@ class Voter extends Model
 {
     use HasFactory, SoftDeletes, HasUuids;
 
+    protected $hidden = [
+        'login_code',
+        '2fa_code',
+    ];
+
     protected $casts = [
 		'first_name' => NameCast::class,
 		'last_name' => NameCast::class,

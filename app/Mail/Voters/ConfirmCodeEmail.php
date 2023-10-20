@@ -2,6 +2,8 @@
 
 namespace App\Mail\Voters;
 
+use App\Models\Voter;
+use App\Models\Voting;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,12 +15,18 @@ class ConfirmCodeEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private Voting $voting;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(
+        public Voter $voter,
+        public string $confirmCode,
+    )
     {
-        //
+        $this->voting = Voting::latest()
+                                ->first();
     }
 
     /**
@@ -27,7 +35,7 @@ class ConfirmCodeEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Confirm Code Email',
+            subject: '2FA Code Email',
         );
     }
 
@@ -38,6 +46,12 @@ class ConfirmCodeEmail extends Mailable
     {
         return new Content(
             markdown: 'emails.voters.confirm-code',
+            with: [
+				'senderName' => $this->voter->first_name,
+				'confirmCode' => $this->confirmCode,
+                'electionStartDate' => $this->voting->start_date,
+                'electionEndDate' =>$this->voting->end_date,
+			]
         );
     }
 
