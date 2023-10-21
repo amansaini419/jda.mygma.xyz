@@ -24,8 +24,8 @@ class VoterService
 
         Mail::to($voter->email)->send(new LoginCodeEmail($voter, $loginCode));
 
-        //$message = "Hello $voter->first_name,\nYour OTP to verify your identity to cast your vote is $loginCode.\nDo not share it with anyone.";
-        //SmsController::send($voter->country_code, $voter->mobile_number, $message);
+        $message = "Hello $voter->first_name,\nYour OTP to verify your identity to cast your vote is $loginCode.\nDo not share it with anyone.";
+        SmsController::send($voter->country_code, $voter->mobile_number, $message);
     }
 
     public function send2faCode($voter)
@@ -44,8 +44,8 @@ class VoterService
 
         Mail::to($voter->email)->send(new ConfirmCodeEmail($voter, $confirmCode));
 
-        //$message = "Hello $voter->first_name,\nYour 2FA to verify your identity to cast your vote is $confirmCode.\nDo not share it with anyone.";
-        //SmsController::send($voter->country_code, $voter->mobile_number, $message);
+        $message = "Hello $voter->first_name,\nYour 2FA to verify your identity to cast your vote is $confirmCode.\nDo not share it with anyone.";
+        SmsController::send($voter->country_code, $voter->mobile_number, $message);
     }
 
     public function login($voter, $confirmCode)
