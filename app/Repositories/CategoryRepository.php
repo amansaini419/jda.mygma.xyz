@@ -20,7 +20,6 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     public function checkVotedNomineeInCategory($nominees)
     {
-        return $nominees->whereIn('id', auth()->user()->nominees->pluck('id'))
-                        ->first();
+        return isUserLogin() ? $nominees->whereIn('id', auth()->user()->nominees->pluck('id'))->first() : '';
     }
 }

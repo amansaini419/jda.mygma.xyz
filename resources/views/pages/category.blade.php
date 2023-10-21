@@ -5,12 +5,12 @@
     <hr>
     <div class="d-flex align-item-center justify-content-center flex-wrap">
         @forelse ($category->nominees as $nominee)
-        <div class="card rounded-3 shadow border-0 m-3 h-100" style="width: 320px;">
+        <div class="card text-center rounded-3 shadow border-0 m-3 h-100" style="width: 320px;">
             {{-- <div class="position-relative">
                 <span class="position-absolute bg-success text-white rounded-circle fw-bolder lh-1 p-1" style="font-size: 2rem; top: 10px; right: 10px;"><i class="ti ti-check"></i></span>
                 <span class="position-absolute bg-danger text-white rounded-circle fw-bolder lh-1 p-1" style="font-size: 2rem; top: 10px; right: 10px;"><i class="ti ti-x"></i></span>
             </div> --}}
-            <div class="card-body text-center">
+            <div class="card-body pb-0">
                 <div class="mx-auto mb-3 border border-light rounded-circle bg-light" style="width: 150px; height: 150px;">
                     <img src="{{ Storage::url($nominee->image) }}" class="nominee-img img-fluid rounded-circle w-100 h-100" alt="{{ $nominee->name }}" />
                 </div>
@@ -18,6 +18,8 @@
                 <blockquote class="blockquote">
                     <p class="mb-4"><em>{{ $nominee->tagline }}</em></p>
                 </blockquote>
+            </div>
+            <div class="card-footer bg-transparent">
                 @if($votingStatus === 'voting active')
                     @if(!isUserLogin())
                         <div class="d-grid">

@@ -35,7 +35,7 @@ class NomineeResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->imageEditor()
-                    ->directory('nominee')
+                    ->directory('images/nominees')
                     ->required(),
             ]);
     }
