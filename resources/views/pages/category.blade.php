@@ -14,29 +14,33 @@
                 <div class="mx-auto mb-3 border border-light rounded-circle bg-light" style="width: 150px; height: 150px;">
                     <img src="{{ Storage::url($nominee->image) }}" class="nominee-img img-fluid rounded-circle w-100 h-100" alt="{{ $nominee->name }}" />
                 </div>
-                <h5 class="card-title fw-bold mb-2 fs-5 text-uppercase">{{ $nominee->name }}</h5>
+                <h3 class="card-title fw-bold mb-2 fs-5 text-uppercase">{{ $nominee->name }}</h3>
                 <blockquote class="blockquote">
                     <p class="mb-4"><em>{{ $nominee->tagline }}</em></p>
                 </blockquote>
-                @if(!isUserLogin())
-                    <div class="d-grid">
-                        <a href="{{ route('login') }}" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">login to vote</a>
-                    </div>
-                @else
-                    @if($votedNominee)
-                        <h2 class="text-uppercase fw-medium fs5">
-                        @if($votedNominee->id === $nominee->id)
-                            <span class="text-success">voted <i class="ti ti-check"></i></span>
-                        @else
-                            <span class="text-error">not voted <i class="ti ti-x"></i></span>
-                        @endif
-                        </h2>
+                @if($votingStatus === 'voting active')
+                    @if(!isUserLogin())
+                        <div class="d-grid">
+                            <a href="{{ route('login') }}" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">login to vote</a>
+                        </div>
                     @else
-                        <form class="d-grid" action="{{ route('nominee.vote', ['nominee' => $nominee->id]) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">vote now</button>
-                        </form>
+                        @if($votedNominee)
+                            <h4 class="text-uppercase fw-medium fs-6">
+                            @if($votedNominee->id === $nominee->id)
+                                <span class="text-success">voted <i class="ti ti-check"></i></span>
+                            @else
+                                <span class="text-error">not voted <i class="ti ti-x"></i></span>
+                            @endif
+                            </h4>
+                        @else
+                            <form class="d-grid" action="{{ route('nominee.vote', ['nominee' => $nominee->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">vote now</button>
+                            </form>
+                        @endif
                     @endif
+                @else
+                    <h4 class="text-uppercase fw-medium fs-6 text-warning">{{ $votingStatus }}</h4>
                 @endif
             </div>
         </div>

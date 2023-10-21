@@ -22,5 +22,6 @@ class RepositoryServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->bind(Interfaces\CategoryRepositoryInterface::class, Repositories\CategoryRepository::class);
+        $this->app->bind(Interfaces\VotingRepositoryInterface::class, Repositories\VotingRepository::class);
     }
 }
