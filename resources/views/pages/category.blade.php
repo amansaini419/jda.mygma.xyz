@@ -18,10 +18,26 @@
                 <blockquote class="blockquote">
                     <p class="mb-4"><em>{{ $nominee->tagline }}</em></p>
                 </blockquote>
-                <p class="d-grid m-0 gap-2">
-                    {{-- <button type="button" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">vote now</button> --}}
-                    <button type="button" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">login to vote</button>
-                </p>
+                @if(!isUserLogin())
+                    <div class="d-grid">
+                        <a href="{{ route('login') }}" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">login to vote</a>
+                    </div>
+                @else
+                    @if($votedNominee)
+                        <h2 class="text-uppercase fw-medium fs5">
+                        @if($votedNominee->id === $nominee->id)
+                            <span class="text-success">voted <i class="ti ti-check"></i></span>
+                        @else
+                            <span class="text-error">not voted <i class="ti ti-x"></i></span>
+                        @endif
+                        </h2>
+                    @else
+                        <form class="d-grid" action="{{ route('nominee.vote', ['nominee' => $nominee->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">vote now</button>
+                        </form>
+                    @endif
+                @endif
             </div>
         </div>
         @empty

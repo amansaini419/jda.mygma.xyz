@@ -17,9 +17,15 @@ class CategoryController extends Controller
     public function view(string $slug)
     {
         $category = $this->categoryRepository->getCategoryBySlug($slug);
+        if(!$category){
+            return abort('404');
+        }
 
+        $category->load('nominees');
+        //dd($category->nominees, $this->categoryRepository->checkVotedNomineeInCategory($category->nominees));
         return view('pages.category', [
-            'category' => $category->load('nominees'),
+            'category' => $category,
+            'votedNominee' => $this->categoryRepository->checkVotedNomineeInCategory($category->nominees),
         ]);
     }
 }

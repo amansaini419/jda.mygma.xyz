@@ -120,6 +120,18 @@
 				};
 			});
 		</script>
+        @if (Session::has('alert'))
+        <script>
+            let alertEvent = new CustomEvent('alert', {
+                detail: [{
+                    type: '{{ session('alert')['type'] }}',
+                    message: '{{ session('alert')['message'] }}',
+                    title: '{{ session('alert')['title'] }}',
+                }]
+            });
+            window.dispatchEvent(alertEvent);
+        </script>
+        @endif
         @stack('script')
     </body>
 
