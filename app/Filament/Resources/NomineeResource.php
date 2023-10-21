@@ -47,12 +47,15 @@ class NomineeResource extends Resource
             ->columns([
                 /* Tables\Columns\TextColumn::make('category.name')
                     ->searchable(), */
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('tagline')
-                    ->searchable(),
                 Tables\Columns\ImageColumn::make('image')
                     ->circular(),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('voters_count')
+                    ->label('Total votes')
+                    ->counts('voters'),
+                Tables\Columns\TextColumn::make('tagline')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
