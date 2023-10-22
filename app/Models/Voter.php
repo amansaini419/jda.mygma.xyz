@@ -43,12 +43,12 @@ class Voter extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function boot() {
+    /* public static function boot() {
         parent::boot();
 
         static::created(function($item) {
             $voterService = new VoterService;
-            $voterService->sendLoginCode($item/* , $item->user_id */);
+            $voterService->sendLoginCode($item);
         });
-    }
+    } */
 }

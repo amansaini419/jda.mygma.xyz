@@ -15,24 +15,19 @@ class LoginService
         $this->voterService = $voterService;
     }
 
-    public function checkLogin(string $mdcNumber, $loginCode)
+    public function checkLogin(string $mdcNumber)
     {
-        $voter = Voter::where([
+        return Voter::where([
             'mdc_number' => $mdcNumber,
-            //'login_code' => $loginCode,
-            ['login_code_date', '>=', Carbon::now()->subMinutes(env('LOGIN_TIME'))],
         ])->first();
-        return ($voter && Hash::check($loginCode, $voter->login_code)) ? $voter : false;
     }
 
-    public function check2fa(string $mdcNumber, $loginCode, $confirmCode)
+    public function check2fa(string $mdcNumber, $confirmCode)
     {
         $voter = Voter::where([
             'mdc_number' => $mdcNumber,
-            /* 'login_code' => $loginCode,
-            'confirm_code' => $confirmCode, */
             ['confirm_code_date', '>=', Carbon::now()->subMinutes(env('LOGIN_TIME'))],
         ])->first();
-        return ($voter && Hash::check($loginCode, $voter->login_code) && Hash::check($confirmCode, $voter->confirm_code)) ? $voter : false;
+        return ($voter && Hash::check($confirmCode, $voter->confirm_code)) ? $voter : false;
     }
 }

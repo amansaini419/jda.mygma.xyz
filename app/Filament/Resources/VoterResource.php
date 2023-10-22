@@ -101,7 +101,7 @@ class VoterResource extends Resource
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
-                    Tables\Actions\Action::make('resend')
+                    /* Tables\Actions\Action::make('resend')
                         ->label('Resend Login Code')
                         ->icon('heroicon-o-paper-airplane')
                         ->color('primary')
@@ -116,7 +116,7 @@ class VoterResource extends Resource
                                 ->success()
                                 ->title('Login Code')
                                 ->body('The login code has been send to voter successfully.')
-                        ),
+                        ), */
                     Tables\Actions\ForceDeleteAction::make(),
                     Tables\Actions\RestoreAction::make(),
                 ]),

@@ -10,7 +10,6 @@ use Livewire\Component;
 class Login extends Component
 {
     public string $mdcNumber = '';
-    public string $loginCode = '';
     public string $confirmCode = '';
 
     #[Locked]
@@ -35,11 +34,10 @@ class Login extends Component
         if($this->loginSuccess){
             $this->validate([
                 'mdcNumber' => 'required|exists:voters,mdc_number',
-                'loginCode' => 'required|digits:6',
                 'confirmCode' => 'required|digits:6',
             ]);
 
-            $voter = $this->loginService->check2fa($this->mdcNumber, $this->loginCode, $this->confirmCode);
+            $voter = $this->loginService->check2fa($this->mdcNumber, $this->confirmCode);
 
             if(!$voter)
             {
@@ -69,14 +67,13 @@ class Login extends Component
     {
         $this->validate([
             'mdcNumber' => 'required|exists:voters,mdc_number',
-            'loginCode' => 'required|digits:6',
         ]);
 
-        $voter = $this->loginService->checkLogin($this->mdcNumber, $this->loginCode);
+        $voter = $this->loginService->checkLogin($this->mdcNumber);
 
         if(!$voter)
         {
-            $this->addError('loginCode', 'Invalid or Expired Login Code');
+            $this->addError('loginCode', 'Invalid MDC Number');
             return;
         }
 
