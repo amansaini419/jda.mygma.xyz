@@ -7,6 +7,7 @@ use App\Interfaces\VotingRepositoryInterface;
 use App\Models\Nominee;
 use App\Models\User;
 use App\Models\Vote;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class NomineeController extends Controller
@@ -50,7 +51,7 @@ class NomineeController extends Controller
 
         $user = User::find(auth()->id());
         $user->nominees()
-                ->attach($nominee->id);
+                ->attach($nominee->id, ['voting_date' => Carbon::now()]);
         return back()->with('alert', setAlertDetails('success', 'You have successfully voted for the nominee.', $nominee->name));
     }
 }

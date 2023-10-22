@@ -52,7 +52,7 @@ class NomineeResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('voters_count')
-                    ->label('Total votes')
+                    ->label('Votes received')
                     ->counts('voters'),
                 Tables\Columns\TextColumn::make('tagline')
                     ->searchable(),

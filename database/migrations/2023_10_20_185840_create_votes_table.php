@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('votes', function (Blueprint $table) {
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Nominee::class);
+            $table->dateTime('voting_date');
         });
     }
 
