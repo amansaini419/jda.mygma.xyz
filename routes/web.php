@@ -23,9 +23,7 @@ Route::get('/blank', function () {
     return view('pages.blank');
 })->name('blank');
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [Controllers\AuthController::class, 'login'])->name('login');
 Route::get('/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
