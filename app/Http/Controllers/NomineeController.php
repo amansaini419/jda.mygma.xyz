@@ -52,6 +52,12 @@ class NomineeController extends Controller
         $user = User::find(auth()->id());
         $user->nominees()
                 ->attach($nominee->id, ['voting_date' => Carbon::now()]);
+        //dd($user->nominees);
+        $categorySlug = $this->categoryRepository->getNonVotedCategorySlug();
+        //dd($categorySlug);
+        if($categorySlug){
+            return to_route('category', ['slug' => $categorySlug])->with('alert', setAlertDetails('success', 'You have successfully voted for the nominee.', $nominee->name));
+        }
         return back()->with('alert', setAlertDetails('success', 'You have successfully voted for the nominee.', $nominee->name));
     }
 }

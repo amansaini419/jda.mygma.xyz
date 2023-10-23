@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\CategoryRepositoryInterface;
 use App\Models\Category;
+use App\Models\User;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
@@ -20,6 +21,26 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     public function checkVotedNomineeInCategory($nominees)
     {
-        return isUserLogin() ? $nominees->whereIn('id', auth()->user()->nominees->pluck('id'))->first() : '';
+        if(isUserLogin()){
+            $user = User::find(auth()->id());
+            return $nominees->whereIn('id', $user->nominees->pluck('id'))->first();
+        }
+        return '';
+        //return isUserLogin() ? $nominees->whereIn('id', auth()->user()->nominees->pluck('id'))->first() : '';
+    }
+
+    public function getNonVotedCategorySlug()
+    {
+        $categories = Category::with('nominees')->get();
+        //dd($categories);
+        //$categories->refresh();
+        foreach($categories as $category){
+            $votedNominee = $this->checkVotedNomineeInCategory($category->nominees);
+            //dd($category, $category->nominees, auth()->user()->nominees, $votedNominee);
+            if($votedNominee == '' || !$votedNominee){
+                return $category->slug;
+            }
+        }
+        return false;
     }
 }
