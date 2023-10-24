@@ -39,14 +39,14 @@
                                     <i class="ti ti-menu-2"></i>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)">
                                     <i class="ti ti-bell-ringing"></i>
                                     <div class="notification bg-primary rounded-circle"></div>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
-                        <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                        {{-- <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
                                 <li class="nav-item dropdown">
                                     <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -75,7 +75,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </nav>
                 </header>
                 <div class="container-fluid">
