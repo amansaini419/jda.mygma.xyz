@@ -46,7 +46,7 @@
                         <span>
                             <i class="ti ti-layout-logout"></i>
                         </span>
-                        <span class="hide-menu">Log Out</span>
+                        <span class="hide-menu">FINISH VOTING</span>
                     </a>
                 </li>
                 @else
