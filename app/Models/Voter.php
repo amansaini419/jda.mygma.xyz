@@ -21,10 +21,10 @@ class Voter extends Model
     ];
 
     protected $casts = [
-		'first_name' => NameCast::class,
-		'last_name' => NameCast::class,
-		'other_name' => NameCast::class,
-		'gender' => NameCast::class,
+        'first_name' => NameCast::class,
+        'last_name' => NameCast::class,
+        'other_name' => NameCast::class,
+        'gender' => NameCast::class,
         'login_code' => 'hashed',
         '2fa_code' => 'hashed',
     ];
@@ -39,7 +39,13 @@ class Voter extends Model
         $this->attributes['2fa_code'] = Hash::make($value);
     }
 
-    public function user(): BelongsTo{
+    public function getFullnameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 

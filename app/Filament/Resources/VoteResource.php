@@ -37,7 +37,7 @@ class VoteResource extends Resource
                 Tables\Columns\TextColumn::make('index')
                     ->label('S.N.')
                     ->rowIndex(),
-                Tables\Columns\TextColumn::make('voter_name')
+                Tables\Columns\TextColumn::make('fullname')
                     ->label('Voter Name')
                     ->extraAttributes(['class' => 'capitalize'])
                     ->searchable()
@@ -95,7 +95,7 @@ class VoteResource extends Resource
                 ->join('votes', 'votes.user_id', 'users.id')
                 ->join('nominees', 'nominees.id', 'votes.nominee_id')
                 ->join('voters', 'voters.user_id', 'users.id')
-                ->select('users.*', DB::raw("CONCAT('voters.first_name','voters.last_name') AS voter_name"), 'voters.mdc_number', 'nominees.name AS nominee_name', 'nominees.id AS nominee_id', 'votes.voting_date')
+                ->select('users.*', 'voters.fullname', 'voters.mdc_number', 'nominees.name AS nominee_name', 'nominees.id AS nominee_id', 'votes.voting_date')
                 ->orderBy('votes.voting_date', 'desc');
     }
 }
