@@ -32,7 +32,7 @@ class StatsOverview extends BaseWidget
             ->color('success'),
             Stat::make(
                 'Members Voted',
-                Models\Vote::groupBy('user_id')->count()->dd(),
+                Models\Vote::groupBy('user_id')->dd(),
             )
             ->color('success'),
         ];
