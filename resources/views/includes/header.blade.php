@@ -22,6 +22,7 @@
                         <span class="hide-menu">Welcome</span>
                     </a>
                 </li>
+                @if(isUserLogin())
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">VOTING</span>
@@ -36,6 +37,7 @@
                     </a>
                 </li>
                 @endforeach
+                @endif
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">auth</span>

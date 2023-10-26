@@ -27,8 +27,8 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [Controllers\AuthController::class, 'login'])->name('login');
 Route::get('/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
-Route::get('/category/{slug}', [Controllers\CategoryController::class, 'view'])->name('category');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/category/{slug}', [Controllers\CategoryController::class, 'view'])->name('category');
     Route::post('/nominee/{nominee}/vote', [Controllers\NomineeController::class, 'vote'])->name('nominee.vote');
 });
