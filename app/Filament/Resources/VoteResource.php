@@ -95,7 +95,7 @@ class VoteResource extends Resource
                 ->join('votes', 'votes.user_id', 'users.id')
                 ->join('nominees', 'nominees.id', 'votes.nominee_id')
                 ->join('voters', 'voters.user_id', 'users.id')
-                ->select('users.*', 'voters.fullname', 'voters.mdc_number', 'nominees.name AS nominee_name', 'nominees.id AS nominee_id', 'votes.voting_date')
+                ->select('users.*', 'voters.*', 'nominees.name AS nominee_name', 'nominees.id AS nominee_id', 'votes.voting_date')
                 ->orderBy('votes.voting_date', 'desc');
     }
 }
