@@ -14,7 +14,7 @@ class CreateVoter extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $user = User::firstOrNew([
-            'name' => $data['first_name'],
+            'name' => $data['first_name'] . ' ' . $data['last_name'],
             'email' => $data['email']
         ]);
         $user->password = uniqid();
