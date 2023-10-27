@@ -17,7 +17,7 @@ class StatsOverview extends BaseWidget
         return [
             Stat::make(
                 'Total Voters',
-                '1732'
+                '1732',
                 //Models\Voter::count(),
             )
             ->color('success'),
