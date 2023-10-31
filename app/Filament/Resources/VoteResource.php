@@ -40,17 +40,17 @@ class VoteResource extends Resource
                 Tables\Columns\TextColumn::make('voter.fullname')
                     ->label('Voter Name')
                     ->extraAttributes(['class' => 'capitalize'])
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(['first_name', 'last_name'])
+                    ->sortable(['first_name', 'last_name']),
                 Tables\Columns\TextColumn::make('voter.mdc_number')
                     ->label('MDC number')
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(['voters.mdc_number'])
+                    ->sortable(['voters.mdc_number']),
                 Tables\Columns\TextColumn::make('nominee_name')
                     ->label('Nominee Name')
                     ->extraAttributes(['class' => 'capitalize'])
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(['nominees.name'])
+                    ->sortable(['nominees.name']),
                 /* Tables\Columns\TextColumn::make('nominee_id.category.name')
                     ->label('Category')
                     ->searchable()
