@@ -1,6 +1,6 @@
 <x-mail::message>
 <p style="margin-bottom: 30px; text-align: center;">
-<img src="{{ Storage::url(env('COMPANY_LOGO')) }}" alt="{{ env('COMPANY_NAME') }}" width="80" />
+<img src="{{ Storage::url(env('COMPANY_LOGO')) }}" alt="{{ env('COMPANY_NAME') }}" width="200" />
 </p>
 <div style="padding: 40px 0;">
 @yield('body')
