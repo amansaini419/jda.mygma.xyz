@@ -42,12 +42,11 @@ class VoterService
                     'password' => Hash::make($confirmCode),
                 ]);
 
-        // Mail::to($voter->email)->send(new ConfirmCodeEmail($voter, $confirmCode));
+        /* Mail::to($voter->email)->send(new ConfirmCodeEmail($voter, $confirmCode));
 
         $message = "Hello $voter->first_name,\nYour 2FA to verify your identity to cast your vote is $confirmCode.\nDo not share it with anyone.";
-        SmsController::send($voter->country_code, $voter->mobile_number, $message);
+        SmsController::send($voter->country_code, $voter->mobile_number, $message); */
         Mail::to($voter->email)->send(new LoginCodeEmail($voter, $confirmCode));
-
         $message = "Hello $voter->first_name,\nYour OTP to verify your identity to cast your vote is $confirmCode.\nDo not share it with anyone.";
         SmsController::send($voter->country_code, $voter->mobile_number, $message);
     }
