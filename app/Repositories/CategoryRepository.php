@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\CategoryRepositoryInterface;
 use App\Models\Category;
+use App\Models\SelectedCandidate;
 use App\Models\User;
 
 class CategoryRepository implements CategoryRepositoryInterface
@@ -38,6 +39,21 @@ class CategoryRepository implements CategoryRepositoryInterface
             $votedNominee = $this->checkVotedNomineeInCategory($category->nominees);
             //dd($category, $category->nominees, auth()->user()->nominees, $votedNominee);
             if($votedNominee == '' || !$votedNominee){
+                return $category->slug;
+            }
+        }
+        return false;
+    }
+
+    public function getNonSelectedCategorySlug()
+    {
+        $categories = Category::with('nominees')->get();
+        foreach($categories as $category){
+            $selectedCandidate = SelectedCandidate::where([
+                'category_id' => $category->id,
+                'user_id' => auth()->id(),
+            ])->first();
+            if(!$selectedCandidate){
                 return $category->slug;
             }
         }

@@ -22,4 +22,9 @@ class Category extends Model
     public function nominees(): HasMany{
         return $this->hasMany(Nominee::class);
     }
+
+    public function selectedCandidates(): HasMany
+    {
+        return $this->hasMany(SelectedCandidate::class);
+    }
 }

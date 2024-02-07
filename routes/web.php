@@ -29,6 +29,10 @@ Route::get('/login', [Controllers\AuthController::class, 'login'])->name('login'
 Route::get('/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/category/{slug}', [Controllers\CategoryController::class, 'view'])->name('category');
-    Route::post('/nominee/{nominee}/vote', [Controllers\NomineeController::class, 'vote'])->name('nominee.vote');
+    Route::get('/summary', [Controllers\SummaryController::class, 'index'])->name('summary');
+    // Route::get('/category/{slug}', [Controllers\CategoryController::class, 'view'])->name('category');
+    Route::get('/category/{slug}', [Controllers\CategoryController::class, 'show'])->name('category');
+    Route::post('/nominee/{nominee}/select', [Controllers\NomineeController::class, 'select'])->name('nominee.select');
+    Route::post('/vote', [Controllers\VoteController::class, 'index'])->name('vote');
+    // Route::post('/nominee/{nominee}/vote', [Controllers\NomineeController::class, 'vote'])->name('nominee.vote');
 });

@@ -8,4 +8,5 @@ interface CategoryRepositoryInterface
     public function getCategoryBySlug(string $slug);
     public function checkVotedNomineeInCategory($category);
     public function getNonVotedCategorySlug();
+    public function getNonSelectedCategorySlug();
 }

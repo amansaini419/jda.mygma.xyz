@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Nominee extends Model
@@ -35,5 +36,10 @@ class Nominee extends Model
             User::class,
             'votes',
         );
+    }
+
+    public function selectedCandidates(): HasMany
+    {
+        return $this->hasMany(SelectedCandidate::class);
     }
 }

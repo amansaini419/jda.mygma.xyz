@@ -10,6 +10,7 @@ use Filament\Panel;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -76,6 +77,10 @@ class User extends Authenticatable implements FilamentUser
             Nominee::class,
             'votes',
         );
+    }
+
+    public function selectedCandidates(): HasMany{
+        return $this->hasMany(SelectedCandidate::class);
     }
 
     /* public function nominee(): HasOneThrough{
