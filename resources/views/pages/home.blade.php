@@ -20,15 +20,17 @@
         <div class="card-body text-center">
             <div class="flex flex-row justify-content-center align-item-center flex-wrap">
                 @foreach ($category->nominees as $nominee)
-                    <div class="d-inline-block" style="width: 320px;">
-                        <div class="mx-auto mb-3 border border-light rounded-circle bg-light" style="width: 150px; height: 150px;">
-                            <img src="{{ Storage::url($nominee->image) }}" class="nominee-img img-fluid rounded-circle w-100 h-100" alt="{{ $nominee->name }}" />
+                    @if(strtolower($nominee->name) != 'no vote')
+                        <div class="d-inline-block" style="width: 320px;">
+                            <div class="mx-auto mb-3 border border-light rounded-circle bg-light" style="width: 150px; height: 150px;">
+                                <img src="{{ Storage::url($nominee->image) }}" class="nominee-img img-fluid rounded-circle w-100 h-100" alt="{{ $nominee->name }}" />
+                            </div>
+                            <h3 class="card-title fw-bold mb-2 fs-5 text-uppercase">{{ $nominee->name }}</h3>
+                            <blockquote class="blockquote">
+                                <p class="mb-4"><em>{{ $nominee->tagline }}</em></p>
+                            </blockquote>
                         </div>
-                        <h3 class="card-title fw-bold mb-2 fs-5 text-uppercase">{{ $nominee->name }}</h3>
-                        <blockquote class="blockquote">
-                            <p class="mb-4"><em>{{ $nominee->tagline }}</em></p>
-                        </blockquote>
-                    </div>
+                    @endif
                 @endforeach
             </div>
             {{-- <a href="{{ route('category', ['slug' => $category->slug]) }}" class="stretched-link"></a> --}}
