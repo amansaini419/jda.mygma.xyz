@@ -22,7 +22,7 @@
             <p class="card-text">
                 @if(isUserLogin())
                     {{-- <a href="{{ route('category', ['slug' => $categorySlug]) }}" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">START VOTING</a> --}}
-                    <a id="displayListBtn" href="javascript:;" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">START VOTING</a>
+                    <a id="displayListBtn" href="{{ route('category', ['slug' => $categorySlug]) }}" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">START VOTING</a>
                 @else
                     <a class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium" href="{{ route('login') }}" aria-expanded="false">LOGIN</a>
                 @endif
