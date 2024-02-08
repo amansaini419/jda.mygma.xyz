@@ -9,9 +9,19 @@
             <p class="card-text">Voting Start Date<br><strong>{{ $voting->start_date }}</strong></p>
             <p class="card-text">Voting End Date<br><strong>{{ $voting->end_date }}</strong></p>
         @endif
+        @if($categorySlug)
+            <hr>
+            <p class="card-text">
+                @if(isUserLogin())
+                    <a href="{{ route('category', ['slug' => $categorySlug]) }}" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">START VOTING</a>
+                @else
+                    <a class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium" href="{{ route('login') }}" aria-expanded="false">LOGIN</a>
+                @endif
+            </p>
+        @endif
     </div>
 </div>
-@php
+{{-- @php
     $categories->load('nominees');
 @endphp
 @foreach ($categories as $category)
@@ -33,10 +43,8 @@
                     @endif
                 @endforeach
             </div>
-            {{-- <a href="{{ route('category', ['slug' => $category->slug]) }}" class="stretched-link"></a> --}}
-            {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
         </div>
     </div>
-@endforeach
+@endforeach --}}
 </div>
 @endsection

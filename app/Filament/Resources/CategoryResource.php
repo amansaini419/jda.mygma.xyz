@@ -103,6 +103,7 @@ class CategoryResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
+        // dd(parent::getEloquentQuery());
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,

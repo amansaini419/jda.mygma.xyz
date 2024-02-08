@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Http\Controllers\CategoryController;
 use App\Services\LoginService;
 use App\Services\VoterService;
 use Livewire\Attributes\Locked;
@@ -74,6 +75,17 @@ class Login extends Component
         if(!$voter)
         {
             $this->addError('loginCode', 'Invalid MDC Number');
+            return;
+        }
+
+        $categories = CategoryController::getAll();
+        $user = $voter->user;
+        if($categories->count() === $user->nominees->count()){
+            $this->dispatch('alert', [
+                'type' => 'warning',
+                // 'title' => '2FA Code',
+                'message' => 'Sorry, this MDC Number has already voted.'
+            ]);
             return;
         }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\CategoryRepositoryInterface;
 use App\Interfaces\VotingRepositoryInterface;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -56,5 +57,10 @@ class CategoryController extends Controller
             'votedNominee' => $this->categoryRepository->checkVotedNomineeInCategory($category->nominees),
             'votingStatus' => $this->votingRepository->getVotingStatus(),
         ]);
+    }
+
+    public static function getAll()
+    {
+        return Category::all();
     }
 }
