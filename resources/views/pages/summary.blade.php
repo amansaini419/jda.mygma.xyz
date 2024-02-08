@@ -15,15 +15,15 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="text-uppercase">Category</th>
-                                <th class="text-uppercase">Selected</th>
+                                {{-- <th class="text-uppercase">Category</th> --}}
+                                <th class="text-uppercase">Candidate</th>
                                 <th class="text-uppercase">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($selectedCandidates as $selectedCandidate)
                                 <tr>
-                                    <td class="fw-bold text-uppercase">{{ $selectedCandidate->category->name }}</td>
+                                    {{-- <td class="fw-bold text-uppercase">{{ $selectedCandidate->category->name }}</td> --}}
                                     <td>
                                         <div class="d-flex">
                                             <div class="border border-light rounded-circle bg-light" style="width: 50px; height: 50px;">
@@ -31,6 +31,7 @@
                                             </div>
                                             <div class="ms-2">
                                                 <h4 class="fw-bold mb-0 text-uppercase fs-5">{{ $selectedCandidate->nominee->name }}</h4>
+                                                <p class="fw-bold text-uppercase mb-0">{{ $selectedCandidate->category->name }}</p>
                                                 {{-- <h4 class="fw-bold mb-1 text-uppercase fs-5">{{ $selectedCandidate->nominee->name }}</h4>
                                                 <blockquote class="blockquote small mb-0">
                                                     <p class="mb-0"><em>{{ $selectedCandidate->nominee->tagline }}</em></p>
@@ -50,7 +51,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td class="border-0">
+                                <td class="border-0 text-center" colspan="2">
                                     @if($isSelectedAll && !$isVoted)
                                         <form action="{{ route('vote') }}" method="post" class="mx-auto mb-4 text-center">
                                             @csrf
