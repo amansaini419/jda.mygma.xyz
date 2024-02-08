@@ -41,7 +41,7 @@
                                     <form class="d-grid" action="{{ route('nominee.select', ['nominee' => $nominee->id]) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="category_id" value="{{ $category->id }}" />
-                                        <button type="submit" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">select</button>
+                                        <button type="submit" class="btn btn-primary btn-lg rounded-pill text-uppercase fw-medium">vote now</button>
                                     </form>
                                 @endif
 
