@@ -57,6 +57,8 @@
                                             @csrf
                                             <button type="submit" class="btn btn-warning btn-lg rounded-pill text-uppercase fw-medium">CONFIRM AND SUBMIT VOTES</button>
                                         </form>
+                                    @else
+                                        <a class="btn btn-warning btn-lg rounded-pill text-uppercase fw-medium" href="{{ route('logout') }}">finish voting</a>
                                     @endif
                                 </td>
                             </tr>
