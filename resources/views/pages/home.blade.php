@@ -62,7 +62,7 @@
 @push('script')
     <script>
         $('#displayListBtn').click(function(){
-            $('displayList').show();
+            $('#displayList').show();
         });
     </script>
 @endpush
