@@ -30,10 +30,11 @@
                                                 <img src="{{ Storage::url($selectedCandidate->nominee->image) }}" class="nominee-img img-fluid rounded-circle w-100 h-100" alt="{{ $selectedCandidate->nominee->name }}" />
                                             </div>
                                             <div class="ms-2">
-                                                <h4 class="fw-bold mb-1 text-uppercase fs-5">{{ $selectedCandidate->nominee->name }}</h4>
+                                                <h4 class="fw-bold mb-0 text-uppercase fs-5">{{ $selectedCandidate->nominee->name }}</h4>
+                                                {{-- <h4 class="fw-bold mb-1 text-uppercase fs-5">{{ $selectedCandidate->nominee->name }}</h4>
                                                 <blockquote class="blockquote small mb-0">
                                                     <p class="mb-0"><em>{{ $selectedCandidate->nominee->tagline }}</em></p>
-                                                </blockquote>
+                                                </blockquote> --}}
                                             </div>
                                         </div>
                                     </td>
