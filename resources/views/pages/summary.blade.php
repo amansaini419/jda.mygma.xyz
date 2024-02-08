@@ -53,11 +53,11 @@
                             <tr>
                                 <td class="border-0 text-center" colspan="2">
                                     @if($isSelectedAll && !$isVoted)
-                                        <form action="{{ route('vote') }}" method="post" class="mx-auto mb-4 text-center">
+                                        <form action="{{ route('vote') }}" method="post" class="mx-auto text-center">
                                             @csrf
                                             <button type="submit" class="btn btn-warning btn-lg rounded-pill text-uppercase fw-medium">CONFIRM AND SUBMIT VOTES</button>
                                         </form>
-                                    @else
+                                    @elseif ($isVoted)
                                         <a class="btn btn-warning btn-lg rounded-pill text-uppercase fw-medium" href="{{ route('logout') }}">finish voting</a>
                                     @endif
                                 </td>
